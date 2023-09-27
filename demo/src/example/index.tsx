@@ -1,8 +1,13 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import packageJson from '../../../package.json';
+import { HiOutlineDocumentDownload } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
 import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
+import img1 from '../assets/logo-plugoo.png';
+import { copyToClipboard } from '../components/CopyToClipboard';
+import { HoverMenu } from '../components/HoverMenu';
+import { ContainerDiv } from '../dashboard/styles';
 import sample from './sample.json';
 
 const Container = styled.div`
@@ -14,11 +19,12 @@ const Container = styled.div`
 
 const Bar = styled.div`
   flex: 1;
-  background-color: #61dafb;
+  background-color:#ffffff;
   color: #000;
   padding: 10px;
   display: flex;
   max-height: 40px;
+  justify-content: space-between;
 
   h1 {
     flex: 1;
@@ -26,17 +32,57 @@ const Bar = styled.div`
     text-align: left;
   }
 
+  li.szh-menu__item.sc-gswNZR.wwBVH {
+    padding: 0px;
+  }
+
+
   button {
+   
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    background: none;
+    color: #000;
+    background: none;
+    border: 5px;
+    width: 100%;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    
+
+    a{
+      text-decoration: none;
+      color: #000;
+      width: 100%;
+    display: flex;
+    }
+  }
+
+  li.szh-menu__item.sc-gswNZR.wwBVH {
+    width: 170px;
+    justify-content: space-around;
+    display: flex;
+}
+
+  .ll  {
     flex: 1;
     padding: 10px;
     margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
-    background-color: #000;
-    color: #fff;
-    border: 0px;
+    background: #54cce5;
+    color: white;
+    border-radius: 5px;
     max-width: 150px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img1{
+    width: 113px;
   }
 `;
 
@@ -44,24 +90,38 @@ const Example = () => {
   const emailEditorRef = useRef<EditorRef | null>(null);
   const [preview, setPreview] = useState(false);
 
-  const saveDesign = () => {
+
+
+  const saveToJsonFile = () => {
     const unlayer = emailEditorRef.current?.editor;
 
-    unlayer?.saveDesign((design) => {
-      console.log('saveDesign', design);
-      alert('Design JSON has been logged in your developer console.');
-    });
+    if (unlayer) {
+      unlayer.saveDesign((design) => {
+        const jsonString = JSON.stringify(design, null, 2);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'design.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    } else {
+      console.error('Editor não encontrado para salvar.');
+    }
   };
+
 
   const exportHtml = () => {
     const unlayer = emailEditorRef.current?.editor;
-
     unlayer?.exportHtml((data) => {
       const { design, html } = data;
-      console.log('exportHtml', html);
-      alert('Output HTML has been logged in your developer console.');
+
+      copyToClipboard(html);
+      alert('Html copiado.');
     });
   };
+
 
   const togglePreview = () => {
     const unlayer = emailEditorRef.current?.editor;
@@ -92,14 +152,22 @@ const Example = () => {
   return (
     <Container>
       <Bar>
-        <h1>React Email Editor v{packageJson.version} (Demo)</h1>
 
-        <button onClick={togglePreview}>
+       <img src={img1} alt="" className='img1'/>
+
+       <ContainerDiv>
+        <HoverMenu>
+          <button onClick={saveToJsonFile}>Export Design <HiOutlineDocumentDownload /></button>
+          <button>
+            <Link to={`/dashboard/design/new`}>New Design</Link>
+          </button>
+        </HoverMenu>
+        <button className='ll' onClick={togglePreview}>
           {preview ? 'Hide' : 'Show'} Preview
         </button>
-        <button onClick={saveDesign}>Save Design</button>
-        <button onClick={exportHtml}>Export HTML</button>
+        </ContainerDiv>
       </Bar>
+
 
       <React.StrictMode>
         <EmailEditor ref={emailEditorRef} onLoad={onLoad} onReady={onReady} />
@@ -107,5 +175,6 @@ const Example = () => {
     </Container>
   );
 };
+
 
 export default Example;

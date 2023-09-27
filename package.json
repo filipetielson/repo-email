@@ -30,6 +30,11 @@
     }
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@szhsin/react-menu": "^4.0.3",
+    "react-icons": "^4.11.0",
+    "reactjs-popup": "^2.0.6",
+    "styled-components": "^6.0.8",
     "unlayer-types": "latest"
   },
   "devDependencies": {
