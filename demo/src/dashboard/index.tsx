@@ -1,8 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import DesignList from './DesignList';
 import DesignEdit from './DesignEdit';
+import DesignList from './DesignList';
 
 const Dashboard = () => {
   return (

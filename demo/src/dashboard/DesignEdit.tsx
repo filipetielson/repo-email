@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { HiOutlineDocumentDownload } from 'react-icons/hi';
-import { TbFileUpload } from 'react-icons/tb';
 import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
 import img1 from '../assets/logo-plugoo.png';
 import { HoverMenu } from '../components/HoverMenu';
@@ -19,10 +17,11 @@ const Bar = styled.div`
   flex: 1;
   background-color: #ffffff;
   color: #000;
-  padding: 10px;
+  padding: 10px 32px;
   display: flex;
   max-height: 40px;
   justify-content: space-between;
+  border-bottom: 1px solid #d7d6d6;
 
   h1 {
     flex: 1;
@@ -35,6 +34,8 @@ const Bar = styled.div`
     justify-content: space-around;
     display: flex;
 }
+
+
 
   li.szh-menu__item.sc-gswNZR.wwBVH {
     padding: 0px;
@@ -64,16 +65,20 @@ label{
     border: 5px;
     width: 100%;
     cursor: pointer;
+    justify-content: center;
+    
 
     a{
       text-decoration: none;
-      color: #000
+      color: #000;
+      display: flex;
+      justify-content: center;
     }
   }
 
   .ll  {
     flex: 1;
-    padding: 10px;
+    padding: 2px 10px;
     margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
@@ -83,6 +88,7 @@ label{
     max-width: 150px;
     cursor: pointer;
     align-items: center;
+    justify-content: center;
   }
 
   .img1{
@@ -135,11 +141,6 @@ const DesignEdit = () => {
       console.error('Editor não encontrado para salvar.');
     }
   };
-
-
-  function handleValue(value) {
-    setValue(value);
-  }
 
   const saveDesign = () => {
     const unlayer = emailEditorRef.current?.editor;
@@ -198,15 +199,14 @@ const DesignEdit = () => {
         <ContainerDiv>
           <HoverMenu>
 
-            <label htmlFor="file"> Upload Design <TbFileUpload />
-            </label>
+            <label htmlFor="file">Carregar projeto</label>
             <input id="file" style={{ display: 'none' }} type="file" accept=".json" onChange={handleFileUpload} />
-            <button onClick={saveToJsonFile}>Export Design <HiOutlineDocumentDownload /></button>
+            <button onClick={saveToJsonFile}>Baixar projeto</button>
           </HoverMenu>
 
 
           <button className='ll' onClick={togglePreview}>
-            {preview ? 'Hide' : 'Show'} Preview
+            {preview ? 'Ocultar': 'Mostrar'} Visualização
           </button>
         </ContainerDiv>
       </Bar>

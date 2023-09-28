@@ -1,7 +1,6 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import { HiOutlineDocumentDownload } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
 import img1 from '../assets/logo-plugoo.png';
@@ -19,12 +18,13 @@ const Container = styled.div`
 
 const Bar = styled.div`
   flex: 1;
-  background-color:#ffffff;
+  background-color: #ffffff;
   color: #000;
-  padding: 10px;
+  padding: 10px 30px;
   display: flex;
   max-height: 40px;
   justify-content: space-between;
+  border-bottom: 1px solid #d7d6d6;
 
   h1 {
     flex: 1;
@@ -36,10 +36,12 @@ const Bar = styled.div`
     padding: 0px;
   }
 
+ 
+
 
   button {
    
-    padding: 10px;
+    padding: 2px 10px;
     font-size: 14px;
     font-weight: bold;
     background: none;
@@ -50,13 +52,15 @@ const Bar = styled.div`
     cursor: pointer;
     width: 100%;
     display: flex;
+    justify-content: center;
     
 
     a{
       text-decoration: none;
       color: #000;
       width: 100%;
-    display: flex;
+      display: flex;
+      justify-content: center;
     }
   }
 
@@ -68,7 +72,7 @@ const Bar = styled.div`
 
   .ll  {
     flex: 1;
-    padding: 10px;
+    padding: 2px 10px;
     margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
@@ -157,13 +161,13 @@ const Example = () => {
 
        <ContainerDiv>
         <HoverMenu>
-          <button onClick={saveToJsonFile}>Export Design <HiOutlineDocumentDownload /></button>
+          <button onClick={saveToJsonFile}>Baixar Projeto</button>
           <button>
-            <Link to={`/dashboard/design/new`}>New Design</Link>
+            <Link to={`/dashboard/design/new`}>Novo Projeto</Link>
           </button>
         </HoverMenu>
         <button className='ll' onClick={togglePreview}>
-          {preview ? 'Hide' : 'Show'} Preview
+          {preview ? 'Ocultar': 'Mostrar'} Visualização
         </button>
         </ContainerDiv>
       </Bar>
