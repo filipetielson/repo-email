@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel index.html --port 3000",
+    "start": "parcel index.html --port 3000 && pm2 start npm --name myapp -- start",
     "build": "parcel build index.html"
   },
   "dependencies": {
