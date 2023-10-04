@@ -1,5 +1,8 @@
 import React from "react";
 import img1 from '../../assets/Screenshot_1.png';
+import img2 from '../../assets/Screenshot_2.png';
+import img3 from '../../assets/Screenshot_3.png';
+import img4 from '../../assets/Screenshot_4.png';
 import { ContainerDiv, ContainerModal } from "./styles";
 
 
@@ -25,26 +28,19 @@ export function ModalMM({ isTrue, handleTogle, handleRedirect }: ModalProps) {
         <div>
 
           <button className="m" onClick={() => handleId('1')}>
-            <img src={img1} alt="" />
+            <img src={img2} alt="" />
           </button>
 
           <button className="m" onClick={() => handleId('2')}>
             <img src={img1} alt="" />
           </button>
 
-          <button className="m" onClick={() => handleId('1')}>
-            <img src={img1} alt="" />
+          <button className="m" onClick={() => handleId('3')}>
+            <img src={img3} alt="" />
           </button>
 
-          <button className="m" onClick={() => handleId('2')}>
-            <img src={img1} alt="" />
-          </button>
-          <button className="m" onClick={() => handleId('1')}>
-            <img src={img1} alt="" />
-          </button>
-
-          <button className="m" onClick={() => handleId('2')}>
-            <img src={img1} alt="" />
+          <button className="m" onClick={() => handleId('4')}>
+            <img src={img4} alt="" />
           </button>
         </div>
 

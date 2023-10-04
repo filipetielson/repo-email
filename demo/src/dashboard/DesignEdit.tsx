@@ -8,6 +8,8 @@ import { ContainerDiv } from './styles';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { ModalMM } from '../components/ModalMM';
+import sample2 from './folder/design (19).json';
+import sample3 from './folder/design (20).json';
 import sample from './folder/design.json';
 import sample1 from './folder/sample.json';
 
@@ -234,6 +236,16 @@ const DesignEdit = () => {
     if (params.id == '2') {
       unlayer.loadDesign(
         sample1
+      );
+    }
+    if (params.id == '3') {
+      unlayer.loadDesign(
+        sample2
+      );
+    }
+    if (params.id == '4') {
+      unlayer.loadDesign(
+        sample3
       );
     }
   };
