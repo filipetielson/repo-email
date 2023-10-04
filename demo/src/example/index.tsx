@@ -76,7 +76,7 @@ const Bar = styled.div`
     margin-left: 10px;
     font-size: 14px;
     font-weight: bold;
-    background: #54cce5;
+    background: #05acc6;
     color: white;
     border-radius: 5px;
     max-width: 150px;
@@ -93,6 +93,8 @@ const Bar = styled.div`
 const Example = () => {
   const emailEditorRef = useRef<EditorRef | null>(null);
   const [preview, setPreview] = useState(false);
+
+ 
 
 
 
@@ -146,6 +148,7 @@ const Example = () => {
   const onLoad: EmailEditorProps['onLoad'] = (unlayer) => {
     console.log('onLoad', unlayer);
     unlayer.addEventListener('design:loaded', onDesignLoad);
+
     unlayer.loadDesign(sample);
   };
 
@@ -157,18 +160,18 @@ const Example = () => {
     <Container>
       <Bar>
 
-       <img src={img1} alt="" className='img1'/>
+        <img src={img1} alt="" className='img1' />
 
-       <ContainerDiv>
-        <HoverMenu>
-          <button onClick={saveToJsonFile}>Baixar Projeto</button>
-          <button>
-            <Link to={`/dashboard/design/new`}>Novo Projeto</Link>
+        <ContainerDiv>
+          <HoverMenu>
+            <button onClick={saveToJsonFile}>Baixar Projeto</button>
+            <button>
+              <Link to={`/dashboard/design/new`}>Novo Projeto</Link>
+            </button>
+          </HoverMenu>
+          <button className='ll' onClick={togglePreview}>
+            {preview ? 'Ocultar' : 'Mostrar'} Visualização
           </button>
-        </HoverMenu>
-        <button className='ll' onClick={togglePreview}>
-          {preview ? 'Ocultar': 'Mostrar'} Visualização
-        </button>
         </ContainerDiv>
       </Bar>
 

@@ -4,10 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel index.html --port 3000 && pm2 start npm --name myapp -- start",
+    "start": "parcel index.html --port 3000 ",
     "build": "parcel build index.html"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-popover": "1.0.7",
+    "@radix-ui/themes": "^1.1.2",
+    "framer-motion": "^10.16.4",
     "react": "^18.2.0",
     "react-app-polyfill": "^1.0.0",
     "react-dom": "^18.2.0",

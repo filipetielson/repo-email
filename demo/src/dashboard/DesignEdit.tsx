@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
+
 import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
-import img1 from '../assets/logo-plugoo.png';
 import { HoverMenu } from '../components/HoverMenu';
 import { ContainerDiv } from './styles';
+
+import { useNavigate, useParams } from 'react-router-dom';
+import { ModalMM } from '../components/ModalMM';
+import sample from './folder/design.json';
+import sample1 from './folder/sample.json';
 
 const Container = styled.div`
   display: flex;
@@ -78,22 +83,46 @@ label{
 
   .ll  {
     flex: 1;
-    padding: 2px 10px;
-    margin-left: 10px;
+    padding: 10px 15px;
     font-size: 14px;
     font-weight: bold;
-    background: #54cce5;
+    background: #05acc6;
     color: white;
     border-radius: 5px;
-    max-width: 150px;
     cursor: pointer;
     align-items: center;
     justify-content: center;
+    white-space: nowrap;
   }
 
   .img1{
     width: 113px;
   }
+
+  img{
+    width: 80px;
+  }
+
+  p{
+    border: 1px solid rgb(135 140 150);;
+    border-radius: 18px;
+    padding: 3px 6px;
+
+    font-size: 13px;
+    color: rgb(135 140 150);;
+  }
+  div{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+
+  h2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    color: #00000087;
+  }
+
 `;
 
 
@@ -103,7 +132,20 @@ const DesignEdit = () => {
   const [preview, setPreview] = useState(false);
   const [jsonData, setJsonData] = useState(null); // Para armazenar os dados do JSON
 
+  const params = useParams()
+  const navigate = useNavigate()
+
   // Função para lidar com a carga do arquivo JSON
+
+  function handleNavigate() {
+    navigate('/dashboard/design/new/')
+    const confirm = window.confirm('Salve as alterações antes de seguir pra um novo template')
+    if (confirm) {
+      setJsonData(null)
+      window.location.reload();
+    }
+  }
+
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -125,6 +167,8 @@ const DesignEdit = () => {
   // Função para salvar os dados como um arquivo JSON
   const saveToJsonFile = () => {
     const unlayer = emailEditorRef.current?.editor;
+
+
 
     if (unlayer) {
       unlayer.saveDesign((design) => {
@@ -180,36 +224,61 @@ const DesignEdit = () => {
   const onLoad: EmailEditorProps['onLoad'] = (unlayer) => {
     console.log('onLoad', unlayer);
     unlayer.addEventListener('design:loaded', onDesignLoad);
-    unlayer.loadDesign(jsonData);
-  };
 
-  console.log(onload)
+    unlayer.loadDesign(jsonData);
+
+    if (params.id == '1') {
+      unlayer.loadDesign(sample);
+    }
+
+    if (params.id == '2') {
+      unlayer.loadDesign(
+        sample1
+      );
+    }
+  };
 
   const onReady: EmailEditorProps['onReady'] = (unlayer) => {
     console.log('onReady', unlayer);
   };
 
+const [isTrue, setIsTrue] = useState(false)
 
+function handleTogle(){
+  setIsTrue(!isTrue)
+}
+
+function handleRedirect(id: string) {
+  navigate(`/dashboard/design/new/${id}`)
+  window.location.reload()
+}
 
   return (
     <Container>
-      <Bar>
-        <img src={img1} alt="" className='img1' />
 
+      <Bar >
+        <div>
+          <h2>Editor templates</h2>
+          <p>version 1.0.0</p>
+        </div>
+
+          
         <ContainerDiv>
-          <HoverMenu>
-
-            <label htmlFor="file">Carregar projeto</label>
             <input id="file" style={{ display: 'none' }} type="file" accept=".json" onChange={handleFileUpload} />
-            <button onClick={saveToJsonFile}>Baixar projeto</button>
+          <button className='ll' onClick={handleTogle}> Temas</button>
+          <HoverMenu>
+            <label htmlFor="file">Carregar template</label>
+            <button onClick={saveToJsonFile}>Baixar template</button>
+            <button onClick={handleNavigate}>Novo template</button>
           </HoverMenu>
 
-
           <button className='ll' onClick={togglePreview}>
-            {preview ? 'Ocultar': 'Mostrar'} Visualização
+            {preview ? 'Ocultar' : 'Mostrar'} Visualização
           </button>
         </ContainerDiv>
+        <ModalMM isTrue={isTrue} handleTogle={handleTogle} handleRedirect={ handleRedirect} />
       </Bar>
+     
 
       <React.StrictMode>
         <EmailEditor ref={emailEditorRef} onLoad={onLoad} onReady={onReady} />

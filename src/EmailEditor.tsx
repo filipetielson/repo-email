@@ -1,13 +1,13 @@
 import React, {
   useEffect,
-  useState,
   useImperativeHandle,
   useMemo,
+  useState,
 } from 'react';
 
 import pkg from '../package.json';
-import { Editor, EditorRef, EmailEditorProps } from './types';
 import { loadScript } from './loadScript';
+import { Editor, EditorRef, EmailEditorProps } from './types';
 
 window.__unlayer_lastEditorId = window.__unlayer_lastEditorId || 0;
 
@@ -26,7 +26,10 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
 
     const options: EmailEditorProps['options'] = {
       ...(props.options || {}),
-      appearance: props.appearance ?? props.options?.appearance,
+      appearance: {
+        theme: 'dark',
+      }
+        ?? props.options?.appearance,
       displayMode: props?.displayMode || props.options?.displayMode || 'email',
       locale: props.locale ?? props.options?.locale,
       projectId: props.projectId ?? props.options?.projectId,

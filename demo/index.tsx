@@ -1,10 +1,10 @@
-import 'react-app-polyfill/ie11';
 import * as React from 'react';
+import 'react-app-polyfill/ie11';
 import ReactDOM from 'react-dom/client';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Example from './src/example';
+import { Home } from './src/Home';
 import Dashboard from './src/dashboard';
 
 const GlobalStyle = createGlobalStyle`
@@ -25,7 +25,7 @@ const App = () => {
     <Router>
       <GlobalStyle />
       <Routes>
-        <Route path="/" element={<Example />} />
+        <Route path="/" element={<Home />} />
         <Route path="/dashboard/*" element={<Dashboard />} />
       </Routes>
     </Router>
@@ -33,4 +33,6 @@ const App = () => {
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
-root.render(<App />);
+root.render(
+    <App />
+);

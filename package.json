@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-popover": "1.0.7",
     "@szhsin/react-menu": "^4.0.3",
     "react-icons": "^4.11.0",
     "reactjs-popup": "^2.0.6",

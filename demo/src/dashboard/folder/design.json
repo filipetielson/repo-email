@@ -94,7 +94,7 @@
                   "duplicatable": true,
                   "deletable": true,
                   "hideable": true,
-                  "text": "MacBook Pro",
+                  "text": "projeto 1",
                   "_override": {
                     "mobile": {
                       "fontSize": "45px"

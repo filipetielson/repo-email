@@ -5,7 +5,7 @@ export const Container = styled.div`
 display: flex;
 align-items: center;
 
-background-color: #54cce5;
+background-color: #05acc6;
 border-radius: 5px;
 
 cursor: pointer;
