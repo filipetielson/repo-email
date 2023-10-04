@@ -47,6 +47,8 @@ animation: ${fadeMM} 1.3s ;
     padding: 0;
     border-radius: 10px;
     width: 14rem;
+    
+
       height: 20rem;
       cursor: pointer;
 
@@ -59,6 +61,7 @@ animation: ${fadeMM} 1.3s ;
       width: 14rem;
       height: 20rem;
       border-radius: 10px;
+      object-fit: cover;
     }
     
   &:hover{

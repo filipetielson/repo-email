@@ -10,6 +10,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ModalMM } from '../components/ModalMM';
 import sample2 from './folder/design (19).json';
 import sample3 from './folder/design (20).json';
+import sample5 from './folder/design (21).json';
+import sample4 from './folder/design (22).json';
 import sample from './folder/design.json';
 import sample1 from './folder/sample.json';
 
@@ -246,6 +248,16 @@ const DesignEdit = () => {
     if (params.id == '4') {
       unlayer.loadDesign(
         sample3
+      );
+      }
+    if (params.id  == '5') {
+      unlayer.loadDesign(
+        sample4
+      );
+    }
+    if (params.id  == '6') {
+      unlayer.loadDesign(
+        sample5
       );
     }
   };

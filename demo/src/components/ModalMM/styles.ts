@@ -85,6 +85,7 @@ gap: 25px !important;
       width: 10rem;
       height: 13rem;
       border-radius: 3px;
+      object-fit: cover;
     }
     
   &:hover{
