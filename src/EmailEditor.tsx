@@ -7,6 +7,7 @@ import React, {
 
 import pkg from '../package.json';
 import { loadScript } from './loadScript';
+import { Container } from './styles';
 import { Editor, EditorRef, EmailEditorProps } from './types';
 
 
@@ -30,8 +31,7 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
       appearance: {
         theme: 'dark',
         loader: {
-          url: 'https://i.postimg.cc/3xF1V82f/logo-plugoo.png',
-
+          url: 'https://i.postimg.cc/sDnjTmWq/logo-plugoo.png',
         },
         features: {
           preview: true,
@@ -120,6 +120,7 @@ useEffect(() => {
 }, [editor, Object.keys(methodProps).join(',')]);
 
 return (
+ 
   <div
     style={{
       flex: 1,
@@ -127,7 +128,9 @@ return (
       minHeight: minHeight,
     }}
   >
+     <Container>
     <div id={editorId} style={{ ...style, flex: 1 }} />
+    </Container>
   </div>
 );
   }

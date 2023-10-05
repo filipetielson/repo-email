@@ -34,9 +34,12 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "1.0.7",
     "@szhsin/react-menu": "^4.0.3",
+    "assemble": "^0.3.83",
+    "grunt": "^0.4.5",
     "react-icons": "^4.11.0",
     "reactjs-popup": "^2.0.6",
     "styled-components": "^6.0.8",
+    "styles": "^0.2.1",
     "unlayer-types": "latest"
   },
   "devDependencies": {
