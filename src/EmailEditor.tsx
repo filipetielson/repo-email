@@ -33,34 +33,47 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
           url: 'https://i.postimg.cc/3xF1V82f/logo-plugoo.png',
 
         },
-      }
-        ?? props.options?.appearance,
-      displayMode: props?.displayMode || props.options?.displayMode || 'email',
-      locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
-      projectId: props.projectId ?? props.options?.projectId,
-      tools: { 
-        form: {
-          enabled: true
-        }
-    } ?? props.tools ?? props.options?.tools ,
+        features: {
+          preview: true,
+        },
+        panels: {
+          tools: {
+            dock: "right",
+            collapsible: true,
+            tabs: {
+              body: {
+                visible: true,
+              }
+            }
+          }
+        }} 
+          ?? props.options?.appearance,
+        displayMode: props?.displayMode || props.options?.displayMode || 'email',
+        locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
+        projectId: props.projectId ?? props.options?.projectId,
+        tools: {
+          form: {
+            enabled: true
+          }
+        } ?? props.tools ?? props.options?.tools,
 
 
 
-      id: editorId,
-      source: {
-        name: pkg.name,
-        version: pkg.version,
-      },
-  };
+        id: editorId,
+        source: {
+          name: pkg.name,
+          version: pkg.version,
+        },
+      };
 
 
-useImperativeHandle(
-  ref,
-  () => ({
-    editor,
-  }),
+      useImperativeHandle(
+        ref,
+      () => ({
+  editor,
+}),
   [editor]
-);
+    );
 
 useEffect(() => {
   return () => {
