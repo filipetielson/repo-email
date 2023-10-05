@@ -9,6 +9,7 @@ import pkg from '../package.json';
 import { loadScript } from './loadScript';
 import { Editor, EditorRef, EmailEditorProps } from './types';
 
+
 window.__unlayer_lastEditorId = window.__unlayer_lastEditorId || 0;
 
 export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
@@ -28,82 +29,93 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
       ...(props.options || {}),
       appearance: {
         theme: 'dark',
+        loader: {
+          url: 'https://i.postimg.cc/3xF1V82f/logo-plugoo.png',
+
+        },
       }
         ?? props.options?.appearance,
       displayMode: props?.displayMode || props.options?.displayMode || 'email',
-      locale: props.locale ?? props.options?.locale,
+      locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
       projectId: props.projectId ?? props.options?.projectId,
-      tools: props.tools ?? props.options?.tools,
+      tools: { 
+        form: {
+          enabled: true
+        }
+    } ?? props.tools ?? props.options?.tools ,
+
+
 
       id: editorId,
       source: {
         name: pkg.name,
         version: pkg.version,
       },
-    };
+  };
 
-    useImperativeHandle(
-      ref,
-      () => ({
-        editor,
-      }),
-      [editor]
-    );
 
-    useEffect(() => {
-      return () => {
-        editor?.destroy();
-      };
-    }, []);
+useImperativeHandle(
+  ref,
+  () => ({
+    editor,
+  }),
+  [editor]
+);
 
-    useEffect(() => {
-      setHasLoadedEmbedScript(false);
-      loadScript(() => setHasLoadedEmbedScript(true), scriptUrl);
-    }, [scriptUrl]);
+useEffect(() => {
+  return () => {
+    editor?.destroy();
+  };
+}, []);
 
-    useEffect(() => {
-      if (!hasLoadedEmbedScript) return;
-      editor?.destroy();
-      setEditor(unlayer.createEditor(options));
-    }, [JSON.stringify(options), hasLoadedEmbedScript]);
+useEffect(() => {
+  setHasLoadedEmbedScript(false);
+  loadScript(() => setHasLoadedEmbedScript(true), scriptUrl);
+}, [scriptUrl]);
 
-    const methodProps = Object.keys(props).filter((propName) =>
-      /^on/.test(propName)
-    );
-    useEffect(() => {
-      if (!editor) return;
+useEffect(() => {
+  if (!hasLoadedEmbedScript) return;
+  editor?.destroy();
+  setEditor(unlayer.createEditor(options));
+}, [JSON.stringify(options), hasLoadedEmbedScript]);
 
-      onLoad?.(editor);
+const methodProps = Object.keys(props).filter((propName) =>
+  /^on/.test(propName)
+);
+useEffect(() => {
+  if (!editor) return;
 
-      // All properties starting with on[Name] are registered as event listeners.
-      methodProps.forEach((methodProp) => {
-        if (
-          /^on/.test(methodProp) &&
-          methodProp !== 'onLoad' &&
-          methodProp !== 'onReady' &&
-          typeof props[methodProp] === 'function'
-        ) {
-          editor.addEventListener(methodProp, props[methodProp]);
-        }
-      });
+  onLoad?.(editor);
 
-      if (onReady) {
-        editor.addEventListener('editor:ready', () => {
-          onReady(editor);
-        });
-      }
-    }, [editor, Object.keys(methodProps).join(',')]);
+  // All properties starting with on[Name] are registered as event listeners.
+  methodProps.forEach((methodProp) => {
+    if (
+      /^on/.test(methodProp) &&
+      methodProp !== 'onLoad' &&
+      methodProp !== 'onReady' &&
+      typeof props[methodProp] === 'function'
+    ) {
+      editor.addEventListener(methodProp, props[methodProp]);
+    }
+  });
 
-    return (
-      <div
-        style={{
-          flex: 1,
-          display: 'flex',
-          minHeight: minHeight,
-        }}
-      >
-        <div id={editorId} style={{ ...style, flex: 1 }} />
-      </div>
-    );
+  if (onReady) {
+    editor.addEventListener('editor:ready', () => {
+      onReady(editor);
+    });
+  }
+}, [editor, Object.keys(methodProps).join(',')]);
+
+return (
+  <div
+    style={{
+      flex: 1,
+      display: 'flex',
+      minHeight: minHeight,
+    }}
+  >
+    <div id={editorId} style={{ ...style, flex: 1 }} />
+  </div>
+);
   }
 );
