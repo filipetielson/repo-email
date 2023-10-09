@@ -7,6 +7,7 @@ import React, {
 
 import pkg from '../package.json';
 import { loadScript } from './loadScript';
+import { Container } from './styles';
 import { Editor, EditorRef, EmailEditorProps } from './types';
 
 
@@ -127,7 +128,9 @@ return (
       minHeight: minHeight,
     }}
   >
+     <Container>
     <div id={editorId} style={{ ...style, flex: 1 }} />
+    </Container>
   </div>
 );
   }
