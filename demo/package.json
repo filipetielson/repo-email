@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "react-email-editor-demo",
   "version": "1.0.0",
   "main": "index.js",
@@ -34,69 +33,4 @@
     "parcel": "1.12.3",
     "typescript": "^3.4.5"
   }
-=======
-  "name": "react-email-editor",
-  "version": "1.7.9",
-  "description": "Unlayer's Email Editor Component for React.js",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "test:watch": "tsdx test --watch",
-    "test:coverage": "tsdx test --coverage",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "release": "npm run build && npm publish",
-    "netlify-build": "cd demo && npm install && npm run build"
-  },
-  "peerDependencies": {
-    "react": ">=15"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "dependencies": {
-    "@headlessui/react": "^1.7.17",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-popover": "1.0.7",
-    "@szhsin/react-menu": "^4.0.3",
-    "assemble": "^0.3.83",
-    "grunt": "^0.4.5",
-    "react-icons": "^4.11.0",
-    "reactjs-popup": "^2.0.6",
-    "styled-components": "^6.0.8",
-    "styles": "^0.2.1",
-    "unlayer-types": "latest"
-  },
-  "devDependencies": {
-    "@rollup/plugin-replace": "^5.0.2",
-    "@testing-library/react": "^13.4.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "husky": "^8.0.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup-plugin-copy": "^3.4.0",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.1",
-    "typescript": "^4.9.4"
-  },
-  "author": "",
-  "homepage": "https://github.com/unlayer/react-email-editor#readme",
-  "license": "MIT",
-  "repository": "https://github.com/unlayer/react-email-editor.git",
-  "keywords": [
-    "react-component"
-  ]
->>>>>>> 76b0501ec514c23ab3251f9067ed8859570ccdee
 }

@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "target": "es5",
@@ -17,28 +16,5 @@
     "lib": ["es2015", "es2016", "dom"],
     "types": ["node"],
     "resolveJsonModule": true
-=======
-  "include": ["src"],
-  "compilerOptions": {
-    "module": "esnext",
-    "lib": ["dom", "esnext"],
-    "importHelpers": true,
-    "declaration": true,
-    "sourceMap": true,
-    "baseUrl": "src",
-    "strict": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "moduleResolution": "node",
-    "jsx": "react",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "noImplicitAny": false
->>>>>>> 76b0501ec514c23ab3251f9067ed8859570ccdee
   }
 }

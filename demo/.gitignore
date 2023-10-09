@@ -1,10 +1,1 @@
-<<<<<<< HEAD
 node_modules
-=======
-*.log
-.DS_Store
-node_modules
-.cache
-dist
-/coverage
->>>>>>> 76b0501ec514c23ab3251f9067ed8859570ccdee
