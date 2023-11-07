@@ -1,12 +1,14 @@
 {
-  "include": ["test/src"],
+  "include": ["src"],
   "compilerOptions": {
+    "target": "ES6",
+    "outDir": "./dist",
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": "test/src",
+    "baseUrl": "src",
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

@@ -5,16 +5,11 @@ import React, {
   useState,
 } from 'react';
 
-import { AppearanceConfig } from 'state/types/index';
-import pkg from '../../package.json';
+import pkg from '../package.json';
 import { loadScript } from './loadScript';
 import { Editor, EditorRef, EmailEditorProps } from './types';
 
-interface CustomAppearanceConfig extends AppearanceConfig {
-  loader: {
-    url: string;
-  };
-}
+
 
 
 window.__unlayer_lastEditorId = window.__unlayer_lastEditorId || 0;
@@ -36,6 +31,9 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
       ...(props.options || {}),
       appearance: {
         theme: 'dark',
+        loader: {
+          url: 'https://i.postimg.cc/sDnjTmWq/logo-plugoo.png',
+        },
         features: {
           preview: true,
         },
