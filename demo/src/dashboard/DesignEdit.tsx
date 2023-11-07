@@ -155,11 +155,11 @@ const DesignEdit = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const jsonString = e.target.result;
+        const jsonString = e.target?.result;
         try {
           const jsonData = JSON.parse(jsonString);
           setJsonData(jsonData); // Atualize o estado com os dados do JSON
-          emailEditorRef.current?.editor.loadDesign(jsonData); // Carregue os dados no editor
+          emailEditorRef?.current?.editor.loadDesign(jsonData); // Carregue os dados no editor
         } catch (error) {
           console.error('Erro ao analisar o arquivo JSON:', error);
         }
