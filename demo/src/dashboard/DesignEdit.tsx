@@ -213,13 +213,30 @@ const DesignEdit = () => {
 
   const exportHtml = () => {
     const unlayer = emailEditorRef.current?.editor;
-
+  
     unlayer?.exportHtml((data) => {
       const { html } = data;
-      console.log('exportHtml', html);
-      alert('Output HTML has been logged in your developer console.');
+      
+      // Crie um elemento de área de texto oculto para copiar o HTML
+      const textArea = document.createElement('textarea');
+      textArea.value = html;
+      
+      // Adicione o elemento à árvore do documento
+      document.body.appendChild(textArea);
+      
+      // Selecione o texto no elemento de área de texto
+      textArea.select();
+      
+      // Copie o texto para a área de transferência
+      document.execCommand('copy');
+      
+      // Remova o elemento de área de texto, pois não é mais necessário
+      document.body.removeChild(textArea);
+      
+      alert('HTML copiado para a área de transferência.');
     });
   };
+  
 
   const onDesignLoad = (data) => {
     console.log('onDesignLoad', data);
@@ -294,6 +311,7 @@ function handleRedirect(id: string) {
             <label htmlFor="file">Carregar template</label>
             <button onClick={saveToJsonFile}>Baixar template</button>
             <button onClick={handleNavigate}>Novo template</button>
+            <button onClick={exportHtml}>Export HTML</button>
           </HoverMenu>
 
           <button className='ll' onClick={togglePreview}>

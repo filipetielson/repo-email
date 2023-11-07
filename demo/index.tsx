@@ -21,6 +21,12 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const App = () => {
+
+  // window.top.location.href = "https://seusite.com";
+  
+  // if (window.self !== window.top) {
+  //   window.top.location.href = "https://seusite.com";
+  // }
   return (
     <Router>
       <GlobalStyle />
