@@ -9,9 +9,6 @@ import pkg from '../package.json';
 import { loadScript } from './loadScript';
 import { Editor, EditorRef, EmailEditorProps } from './types';
 
-
-
-
 window.__unlayer_lastEditorId = window.__unlayer_lastEditorId || 0;
 
 export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
@@ -44,27 +41,25 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
               }
             }
           }
-        }
-      }
-        ?? props.options?.appearance,
-      displayMode: props?.displayMode || props.options?.displayMode || 'email',
-      locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
-      projectId: props.projectId ?? props.options?.projectId,
-      tools: {
-        form: {
-          enabled: true
-        }
-      } ?? props.tools ?? props.options?.tools,
+        }} 
+          ?? props.options?.appearance,
+        displayMode: props?.displayMode || props.options?.displayMode || 'email',
+        locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
+        projectId: props.projectId ?? props.options?.projectId,
+        tools: {
+          form: {
+            enabled: true
+          }
+        } ?? props.tools ?? props.options?.tools,
 
 
 
-      id: editorId,
-      source: {
-        name: pkg.name,
-        version: pkg.version,
-      },
-    };
-
+        id: editorId,
+        source: {
+          name: pkg.name,
+          version: pkg.version,
+        },
+      };
 
     useImperativeHandle(
       ref,
@@ -119,7 +114,6 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
     }, [editor, Object.keys(methodProps).join(',')]);
 
     return (
-
       <div
         style={{
           flex: 1,
