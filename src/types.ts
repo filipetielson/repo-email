@@ -2,8 +2,8 @@
 
 import { CSSProperties } from 'react';
 
-import Embed from 'embed/index';
 import { Editor as EditorClass } from 'embed/Editor';
+import Embed from 'embed/index';
 import { AppearanceConfig, DisplayMode, ToolsConfig } from 'state/types/index';
 
 export type Unlayer = typeof Embed;
@@ -22,6 +22,7 @@ export interface EmailEditorProps {
   options?: UnlayerOptions | undefined;
   scriptUrl?: string | undefined;
   style?: CSSProperties | undefined;
+  
 
   // redundant props -- already available in options
   /** @deprecated */

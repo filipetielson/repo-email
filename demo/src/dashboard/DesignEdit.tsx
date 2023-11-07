@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 
-import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
+import EmailEditor, { EditorRef, EmailEditorProps } from '../../../test/src'; // use react-email-editor instead
 import { HoverMenu } from '../components/HoverMenu';
 import { ContainerDiv } from './styles';
 

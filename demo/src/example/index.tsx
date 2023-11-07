@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import { Link } from 'react-router-dom';
-import EmailEditor, { EditorRef, EmailEditorProps } from '../../../src'; // use react-email-editor instead
+import EmailEditor, { EditorRef, EmailEditorProps } from '../../../test/src'; // use react-email-editor instead
 import img1 from '../assets/logo-plugoo.png';
 import { copyToClipboard } from '../components/CopyToClipboard';
 import { HoverMenu } from '../components/HoverMenu';

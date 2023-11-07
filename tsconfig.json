@@ -1,12 +1,12 @@
 {
-  "include": ["src"],
+  "include": ["test/src"],
   "compilerOptions": {
     "module": "esnext",
     "lib": ["dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
-    "baseUrl": "src",
+    "baseUrl": "test/src",
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
