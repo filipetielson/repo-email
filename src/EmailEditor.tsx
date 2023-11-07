@@ -31,9 +31,6 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
       ...(props.options || {}),
       appearance: {
         theme: 'dark',
-        loader: {
-          url: 'https://i.postimg.cc/sDnjTmWq/logo-plugoo.png',
-        },
         features: {
           preview: true,
         },
@@ -47,90 +44,91 @@ export const EmailEditor = React.forwardRef<EditorRef, EmailEditorProps>(
               }
             }
           }
-        }} 
-          ?? props.options?.appearance,
-        displayMode: props?.displayMode || props.options?.displayMode || 'email',
-        locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
-        projectId: props.projectId ?? props.options?.projectId,
-        tools: {
-          form: {
-            enabled: true
-          }
-        } ?? props.tools ?? props.options?.tools,
+        }
+      }
+        ?? props.options?.appearance,
+      displayMode: props?.displayMode || props.options?.displayMode || 'email',
+      locale: 'pt-BR' ?? props.locale ?? props.options?.locale,
+      projectId: props.projectId ?? props.options?.projectId,
+      tools: {
+        form: {
+          enabled: true
+        }
+      } ?? props.tools ?? props.options?.tools,
 
 
 
-        id: editorId,
-        source: {
-          name: pkg.name,
-          version: pkg.version,
-        },
-      };
+      id: editorId,
+      source: {
+        name: pkg.name,
+        version: pkg.version,
+      },
+    };
 
 
-      useImperativeHandle(
-        ref,
+    useImperativeHandle(
+      ref,
       () => ({
-  editor,
-}),
-  [editor]
+        editor,
+      }),
+      [editor]
     );
 
-useEffect(() => {
-  return () => {
-    editor?.destroy();
-  };
-}, []);
+    useEffect(() => {
+      return () => {
+        editor?.destroy();
+      };
+    }, []);
 
-useEffect(() => {
-  setHasLoadedEmbedScript(false);
-  loadScript(() => setHasLoadedEmbedScript(true), scriptUrl);
-}, [scriptUrl]);
+    useEffect(() => {
+      setHasLoadedEmbedScript(false);
+      loadScript(() => setHasLoadedEmbedScript(true), scriptUrl);
+    }, [scriptUrl]);
 
-useEffect(() => {
-  if (!hasLoadedEmbedScript) return;
-  editor?.destroy();
-  setEditor(unlayer.createEditor(options));
-}, [JSON.stringify(options), hasLoadedEmbedScript]);
+    useEffect(() => {
+      if (!hasLoadedEmbedScript) return;
+      editor?.destroy();
+      setEditor(unlayer.createEditor(options));
+    }, [JSON.stringify(options), hasLoadedEmbedScript]);
 
-const methodProps = Object.keys(props).filter((propName) =>
-  /^on/.test(propName)
-);
-useEffect(() => {
-  if (!editor) return;
+    const methodProps = Object.keys(props).filter((propName) =>
+      /^on/.test(propName)
+    );
+    useEffect(() => {
+      if (!editor) return;
 
-  onLoad?.(editor);
+      onLoad?.(editor);
 
-  // All properties starting with on[Name] are registered as event listeners.
-  methodProps.forEach((methodProp) => {
-    if (
-      /^on/.test(methodProp) &&
-      methodProp !== 'onLoad' &&
-      methodProp !== 'onReady' &&
-      typeof props[methodProp] === 'function'
-    ) {
-      editor.addEventListener(methodProp, props[methodProp]);
-    }
-  });
+      // All properties starting with on[Name] are registered as event listeners.
+      methodProps.forEach((methodProp) => {
+        if (
+          /^on/.test(methodProp) &&
+          methodProp !== 'onLoad' &&
+          methodProp !== 'onReady' &&
+          typeof props[methodProp] === 'function'
+        ) {
+          editor.addEventListener(methodProp, props[methodProp]);
+        }
+      });
 
-  if (onReady) {
-    editor.addEventListener('editor:ready', () => {
-      onReady(editor);
-    });
-  }
-}, [editor, Object.keys(methodProps).join(',')]);
+      if (onReady) {
+        editor.addEventListener('editor:ready', () => {
+          onReady(editor);
+        });
+      }
+    }, [editor, Object.keys(methodProps).join(',')]);
 
-return (
- 
-  <div
-    style={{
-      flex: 1,
-      display: 'flex',
-      minHeight: minHeight,
-    }}
-  >
-    <div id={editorId} style={{ ...style, flex: 1 }} />
-  </div>
-);
+    return (
+
+      <div
+        style={{
+          flex: 1,
+          display: 'flex',
+          minHeight: minHeight,
+        }}
+      >
+        <div id={editorId} style={{ ...style, flex: 1 }} />
+      </div>
+    );
   }
 );
